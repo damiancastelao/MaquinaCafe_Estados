@@ -5,38 +5,38 @@ class CoffeeMachineTest {
 
     @Test
     fun makeCoffee_whenIdle_shouldTransitionToServingCoffee() {
-        CoffeeMachine.clean() // Ensure the machine starts in Idle state
-        CoffeeMachine.makeCoffee()
-        assertTrue(CoffeeMachine.currentState is CoffeeMachineState.ServingCoffee)
+        StateMachine.clean() // Ensure the machine starts in Idle state
+        StateMachine.makeCoffee()
+        assertTrue(StateMachine.currentState is CoffeeMachineState.ServingCoffee)
     }
 
     @Test
     fun makeCoffee_whenMakingCoffee_shouldNotChangeState() {
-        CoffeeMachine.clean()
-        CoffeeMachine.makeCoffee() // Transition to ServingCoffee
-        CoffeeMachine.makeCoffee() // Attempt to make coffee again
-        assertTrue(CoffeeMachine.currentState is CoffeeMachineState.ServingCoffee)
+        StateMachine.clean()
+        StateMachine.makeCoffee() // Transition to ServingCoffee
+        StateMachine.makeCoffee() // Attempt to make coffee again
+        assertTrue(StateMachine.currentState is CoffeeMachineState.ServingCoffee)
     }
 
     @Test
     fun makeCoffee_whenServingCoffee_shouldNotChangeState() {
-        CoffeeMachine.clean()
-        CoffeeMachine.makeCoffee() // Transition to ServingCoffee
-        CoffeeMachine.makeCoffee() // Attempt to make coffee again
-        assertTrue(CoffeeMachine.currentState is CoffeeMachineState.ServingCoffee)
+        StateMachine.clean()
+        StateMachine.makeCoffee() // Transition to ServingCoffee
+        StateMachine.makeCoffee() // Attempt to make coffee again
+        assertTrue(StateMachine.currentState is CoffeeMachineState.ServingCoffee)
     }
 
     @Test
     fun clean_shouldResetStateToIdle() {
-        CoffeeMachine.makeCoffee() // Transition to ServingCoffee
-        CoffeeMachine.clean()
-        assertTrue(CoffeeMachine.currentState is CoffeeMachineState.Idle)
+        StateMachine.makeCoffee() // Transition to ServingCoffee
+        StateMachine.clean()
+        assertTrue(StateMachine.currentState is CoffeeMachineState.Idle)
     }
 
     @Test
     fun makeCoffee_whenError_shouldNotChangeState() {
-        CoffeeMachine.currentState = CoffeeMachineState.Error("Test error")
-        CoffeeMachine.makeCoffee()
-        assertTrue(CoffeeMachine.currentState is CoffeeMachineState.Error)
+        StateMachine.currentState = CoffeeMachineState.Error("Test error")
+        StateMachine.makeCoffee()
+        assertTrue(StateMachine.currentState is CoffeeMachineState.Error)
     }
 }

@@ -4,14 +4,9 @@
 // punto de partida de la app
 fun main() {
     println("--- Encendiendo la máquina ---")
-    CoffeeMachine.makeCoffee()
+    StateMachine.setState(CoffeeMachineState.Idle)
 
-    println("\n--- Intentando hacer café de nuevo ---")
-    CoffeeMachine.makeCoffee()
+    println("\n--- Sirviendo cafe ---")
+    StateMachine.setState(CoffeeMachineState.ServingCoffee)
 
-    println("\n--- Limpiando la máquina ---")
-    CoffeeMachine.clean()
-
-    println("\n--- Y ahora, otro café ---")
-    CoffeeMachine.makeCoffee()
 }
